@@ -1,0 +1,29 @@
+---
+- name: Create an EC2 instance in AWS
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    aws_region: "us-east-1"
+    instance_type: "t2.micro"
+    ami_id: "ami-0c2af51e265bd5e0e"  # Replace with a valid AMI ID for your region
+    key_name: "ANSIBLE"         # Replace with your EC2 key pair name
+    security_group: "default"  # Replace with your security group
+
+  tasks:
+    - name: Launch an EC2 instance
+      ec2:
+        key_name: "ANSIBLE"
+        instance_type: "{ami-0c2af51e265bd5e0e}"
+        image: "ami-0c2af51e265bd5e0e"
+        region: "ap-south-1"
+        group: "sg-06a79eb3e0d8520f4"
+        wait: yes
+        count: 1
+        instance_tags:
+          Name: "Ansible-EC2"
+      
+    - name: Output the EC2 instance ID
+      debug:
+        var: ec2.instances[0].id

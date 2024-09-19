@@ -1,0 +1,19 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Basic CloudFormation Template to create an EC2 instance
+
+Resources:
+  MyEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      InstanceType: "t2.micro"
+      ImageId: "ami-0c2af51e265bd5e0e" # Replace with a valid AMI ID for your region
+      KeyName: "ANSIBLE"          # Replace with your key pair name
+      Tags:
+        - Key: "Name"
+          Value: "BasicEC2Instance"
+
+Outputs:
+  InstanceId:
+    Description: "The Instance ID"
+    Value: !Ref MyEC2Instance
