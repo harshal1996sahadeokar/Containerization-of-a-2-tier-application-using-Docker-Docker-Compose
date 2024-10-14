@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Docker...
+      - sudo install -y docker
+      - service docker start
+  pre_build:
+    commands:
+      - echo Logging in to Amazon EC2...
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker images...
+      - docker-compose build
+artifacts:
+  files:
+    - '**/*'
