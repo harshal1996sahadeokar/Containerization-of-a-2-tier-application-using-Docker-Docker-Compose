@@ -1,0 +1,9 @@
+#bin/bash!
+
+
+mkdir ../frontend
+cd ../frontend
+npm init -y
+npm install express mysql
+touch app.js
+
